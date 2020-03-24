@@ -1,0 +1,17 @@
+galaxy_info:
+  author: kirill-zak
+  description: Install docker container with MongoDB
+  company: https://kirill-zak.ru
+  license: MIT
+  min_ansible_version: 2.9
+  platforms:
+    - name: Ubuntu
+      versions:
+        - xenial
+        - bionic
+
+  galaxy_tags:
+    - docker
+    - mongodb
+
+dependencies: []

@@ -1,0 +1,32 @@
+---
+    - name: Pull MongoDB image
+      docker_image:
+        name: mongo
+        tag: "{{ mongodb_docker_tag }}"
+        source: pull
+   
+    - name: Create MongoDB volume
+      docker_volume:
+        name: "{{ mongodb_docker_volume_data }}"
+   
+    - name: Create MongoDB network
+      docker_network:
+        name: "{{ mongodb_docker_network }}"
+
+    - name: Create MongoDB container
+      docker_container:
+        name: "{{ mongodb_docker_container_name }}"
+        image: "mongo:{{ mongodb_docker_tag }}"
+        state: started
+        restart_policy: unless-stopped
+        memory: "{{ mongodb_docker_memory }}"
+        log_driver: syslog
+        volumes:
+           - "mongodb_data:/data/db"
+        networks:
+           - name: "{{ mongodb_docker_network }}"
+        ports:
+          - "27017:27017"
+        env:
+          MONGO_INITDB_ROOT_USERNAME: "{{ mongodb_docker_root_username }}"
+          MONGO_INITDB_ROOT_PASSWORD: "{{ mongodb_docker_root_password }}"

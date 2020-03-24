@@ -1,0 +1,9 @@
+---
+
+mongodb_docker_tag: 4.2
+mongodb_docker_container_name: mongodb
+mongodb_docker_volume_data: mongodb_data
+mongodb_docker_network: mongodb
+mongodb_docker_root_username: root
+mongodb_docker_root_password: StrongSecret
+mongodb_docker_memory: 512M
