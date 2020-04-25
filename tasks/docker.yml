@@ -26,7 +26,12 @@
         networks:
            - name: "{{ mongodb_docker_network }}"
         ports:
-          - "27017:27017"
+          - "{{ mongodb_docker_port }}:27017"
         env:
           MONGO_INITDB_ROOT_USERNAME: "{{ mongodb_docker_root_username }}"
           MONGO_INITDB_ROOT_PASSWORD: "{{ mongodb_docker_root_password }}"
+    
+    - name: Wait for MongoDB container starts up
+      wait_for:
+        port: "{{ mongodb_docker_port }}"
+        delay: 5
